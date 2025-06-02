@@ -2,7 +2,7 @@
 
 My scripts:
 
-python run_server.py --port 9090 --backend faster-whisper 
+python run_server.py --port 9090 --backend faster_whisper 
 python run_microphone_client.py   
 
 
