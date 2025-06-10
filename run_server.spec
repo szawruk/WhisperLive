@@ -10,18 +10,11 @@ a = Analysis(
         ('faster_whisper', './faster_whisper'),
         ('onnxruntime', './onnxruntime')
     ],
-    hiddenimports=[
-        "torch",
-        "numpy",
-        "soundfile",
-        "sentencepiece",
-        "onnxruntime",
-        "whisper"
-    ],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=["tkinter", "matplotlib", "PyQt5", "pandas"],
+    excludes=[],
     noarchive=False,
     optimize=1,
     cipher=block_cipher,
@@ -55,5 +48,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name='run_server'
+    name='napisowa_note_parser'
 )
