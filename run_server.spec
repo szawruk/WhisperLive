@@ -1,29 +1,40 @@
-ą# -*- mode: python ; coding: utf-8 -*-
+# -*- mode: python ; coding: utf-8 -*-
 
+block_cipher = None
 
 a = Analysis(
     ['run_server.py'],
     pathex=[],
     binaries=[],
-    datas=[],
-    hiddenimports=[],
+       datas=[ 
+        ('faster_whisper', './faster_whisper'),
+        ('onnxruntime', './onnxruntime')
+    ],
+    hiddenimports=[
+        "torch",
+        "numpy",
+        "soundfile",
+        "sentencepiece",
+        "onnxruntime",
+        "whisper"
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=[],
+    excludes=["tkinter", "matplotlib", "PyQt5", "pandas"],
     noarchive=False,
-    optimize=0,
+    optimize=1,
+    cipher=block_cipher,
 )
-pyz = PYZ(a.pure)
+
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
 exe = EXE(
     pyz,
     a.scripts,
-    a.binaries,
-    a.datas,
     [],
-    exclude_binaries=False,
-    name='run_server',
+    exclude_binaries=True,  # Important: set to True for onedir
+    name='napisowa_note_parser',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -34,4 +45,15 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='logo_square_white.ico'
+)
+
+coll = COLLECT(
+    exe,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    strip=False,
+    upx=True,
+    name='run_server'
 )
