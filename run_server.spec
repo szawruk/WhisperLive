@@ -38,7 +38,8 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='logo_square_white.ico'
+    icon='logo_square_white.ico',
+    contents_directory="napisowa_note_parser_lib"
 )
 
 coll = COLLECT(
